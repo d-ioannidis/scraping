@@ -23,10 +23,8 @@ soup = BeautifulSoup(content, features='html.parser')
 
 book1 = soup.find_all('div', attrs={'class': 'title'})
 
-count = 0
-for row in book1:
-    count += 1
-    if len(book1) > count:
+for count, row in enumerate(book1, start=0):
+    if len(book1)-1 > count:
         titles.append(row.get_text().split("by")[0])
 
 book2 = re.findall(r"(\d{2,3})\s(million)", " "+soup.get_text()+" ")
@@ -37,6 +35,7 @@ for row in book2:
 df = pd.DataFrame({'Book Titles': titles, 'Sold Copies (in millions)': sales})
 df.to_csv('books.csv', index=False, encoding='utf-8')
 driver.quit()
+
 
 fig1 = px.bar(df, x='Book Titles', y='Sold Copies (in millions)', title='Top 30 Best-Seller Novels')
 fig = px.pie(df, values='Sold Copies (in millions)',
