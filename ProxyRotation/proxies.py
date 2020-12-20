@@ -28,11 +28,11 @@ class Proxy:
     def driver_url(self, url):
         self.driver.get(url)
 
-    def addresses(self, arg1):
+    def addresses(self, arg):
         content = self.driver.page_source
         soup = BeautifulSoup(content, features='html.parser')
 
-        ip = soup.find_all(arg1)
+        ip = soup.find_all(arg)
 
         for row in ip:
             string = re.findall(r'[0-9].*[^</td>]', " " + row.get_text())
@@ -42,11 +42,11 @@ class Proxy:
 
         del self.address[20::1]
 
-    def ports(self, arg1):
+    def ports(self, arg):
         content = self.driver.page_source
         soup = BeautifulSoup(content, features='html.parser')
 
-        ip = soup.find_all(arg1)
+        ip = soup.find_all(arg)
 
         for row in ip:
             string = re.findall(r'[0-9].*[^</td>]', " " + row.get_text())

@@ -10,12 +10,10 @@ my_proxies = Proxy(USER_AGENT, GPU, HEADLESS)
 my_proxies.driver_start()
 my_proxies.driver_url(URL)
 
-arg1 = 'td'
-arg2 = ''
-arg3 = ''
+arg = 'td'
 
-my_proxies.addresses(arg1)
-my_proxies.ports(arg1)
+my_proxies.addresses(arg)
+my_proxies.ports(arg)
 my_proxies.full_address()
 my_proxies.get_choice(request_method='get', url=URL)
 
